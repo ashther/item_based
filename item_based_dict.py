@@ -6,8 +6,12 @@ Created on Tue Sep 08 10:07:00 2015
 """
 import pandas as pd
 import numpy as np
+import json
 from itertools import permutations
 from dataSource import *
+
+def VPrint(content):
+    print json.dumps(content, encoding='utf-8', ensure_ascii=False, indent=1)
 
 def coocCreate(rating):
     #users = sorted(rating.keys())
@@ -39,6 +43,3 @@ def recommend(u, rating):
     return sorted([(k, v) for k, v in recommend.items() \
                     if k not in rating[str(u)].keys()], 
                    key=lambda recmd:recmd[1], reverse=True)
-
-if __name__ == '__main__':
-    print recommend(5, rating)
